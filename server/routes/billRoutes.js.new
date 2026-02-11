@@ -1,0 +1,27 @@
+const express = require('express');
+const router = express.Router();
+const { 
+  generateBills, 
+  getMyBills, 
+  payBill, 
+  getAllBills,
+  createPaymentOrder,
+  verifyPayment,
+  getRazorpayKey,
+  downloadReceipt
+} = require('../controllers/billController');
+const protect = require('../middleware/authMiddleware');
+
+// Resident Routes
+router.get('/my', protect, getMyBills);
+router.put('/pay/:id', protect, payBill);
+router.post('/create-order', protect, createPaymentOrder);
+router.post('/verify-payment', protect, verifyPayment);
+router.get('/razorpay-key', protect, getRazorpayKey);
+router.get('/receipt/:billId', protect, downloadReceipt);
+
+// Admin Routes
+router.post('/generate', protect, generateBills);
+router.get('/all', protect, getAllBills);
+
+module.exports = router;

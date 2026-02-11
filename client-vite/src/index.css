@@ -1,0 +1,188 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  font-family: 'Inter', 'Poppins', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+  background-color: var(--bg);
+  transition: background-color 200ms ease, color 200ms ease;
+  color: var(--text);
+}
+
+html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-size: 16px;
+}
+
+h1, h2, h3, h4 {
+  font-family: 'Inter', 'Poppins', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+  color: var(--text);
+  margin: 0 0 0.5rem 0;
+}
+
+h1 { font-size: 2.25rem; font-weight: 700; letter-spacing: -0.02em; }
+h2 { font-size: 1.5rem; font-weight: 600; }
+h3 { font-size: 1.125rem; font-weight: 600; }
+h4 { font-size: 1rem; font-weight: 600; }
+
+p, label, span, a, button {
+  color: var(--text);
+}
+
+/* Make primary action buttons consistent if not explicitly colored */
+button:not([class*="bg-"]) {
+  background-color: var(--primary);
+  color: white;
+}
+
+
+/* Set dark (black) theme as default */
+
+:root {
+  /* Dark-first palette (clean, high-contrast) */
+  --bg: #071227; /* deep navy */
+  --surface: #0f1724; /* panel background */
+  --card: #0f172a; /* card bg */
+  --muted-card: rgba(255,255,255,0.02);
+  --glass-border: rgba(255,255,255,0.04);
+  --text: #e6eef8; /* primary text */
+  --muted-text: #9aa6b2;
+  --primary: #2563eb; /* crisp blue */
+  --secondary: #ff7a45; /* warm orange */
+  --success: #10b981; /* green */
+  --danger: #ef4444; /* red */
+  --accent: #7c3aed; /* purple accent */
+}
+
+/* Keep .dark in case components rely on it; values match :root */
+.dark {
+  /* keep for compatibility; same as root (dark-first) */
+  --bg: var(--bg);
+  --card: var(--card);
+  --glass-border: var(--glass-border);
+  --text: var(--text);
+  --primary: var(--primary);
+  --secondary: var(--secondary);
+}
+
+.glass {
+  background: linear-gradient(135deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02));
+  border: 1px solid var(--glass-border);
+  backdrop-filter: blur(6px);
+}
+
+/* Lightweight dark-mode overrides for common Tailwind utility classes
+   This maps frequently used bg/text/border utilities to dark-theme variables
+   so the existing UI (which uses Tailwind classes) responds to the `.dark` class. */
+.bg-white { background-color: var(--card) !important; }
+.bg-gray-50 { background-color: var(--muted-card) !important; }
+.bg-gray-100 { background-color: rgba(255,255,255,0.02) !important; }
+.bg-blue-50 { background-color: rgba(37,99,235,0.04) !important; }
+.bg-amber-50 { background-color: rgba(255,200,100,0.04) !important; }
+.bg-green-100 { background-color: rgba(16,185,129,0.04) !important; }
+.bg-orange-100 { background-color: rgba(255,122,69,0.04) !important; }
+.bg-purple-100 { background-color: rgba(124,58,237,0.04) !important; }
+.text-gray-900, .text-gray-800 { color: var(--text) !important; }
+.text-gray-600, .text-gray-500, .text-gray-400 { color: var(--muted-text) !important; }
+.border-gray-200, .border-gray-100 { border-color: rgba(255,255,255,0.06) !important; }
+
+/* Inputs and form controls */
+input, textarea, select {
+  background-color: rgba(255,255,255,0.02);
+  color: var(--text);
+  border: 1px solid rgba(255,255,255,0.06);
+}
+input::placeholder, textarea::placeholder {
+  color: rgba(255,255,255,0.35);
+}
+
+/* Buttons default use CSS variables for colors to keep consistent */
+.btn-primary { background-color: var(--primary); color: white; }
+.btn-secondary { background-color: var(--secondary); color: white; }
+.btn-success { background-color: var(--success); color: white; }
+
+/* Small utilities to ensure white/bright accents don't overwhelm dark theme */
+.bg-white\/5 { background-color: rgba(255,255,255,0.04) !important; }
+.card-contrast { background-color: var(--surface); border: 1px solid rgba(255,255,255,0.03); }
+
+
+/* make small translucent cards darker in dark mode */
+.dark .bg-white\/5 { background-color: rgba(255,255,255,0.04) !important; }
+
+
+/* Stronger global dark-mode enforcement and polish */
+html.dark, .dark, body, #root {
+  background-color: var(--bg) !important;
+  color: var(--text) !important;
+}
+
+/* Ensure common bright utility classes map to dark values */
+html.dark .bg-white,
+html.dark .bg-white\/50,
+html.dark .bg-white\/10,
+.bg-white,
+.bg-gray-50,
+.bg-gray-100 {
+  background-color: var(--card) !important;
+  color: var(--text) !important;
+}
+
+/* Text overrides to avoid black text in dark mode */
+html.dark .text-black,
+html.dark .text-gray-900,
+html.dark .text-gray-800 {
+  color: var(--text) !important;
+}
+
+/* Softer, more realistic dark shadows for elevated elements */
+html.dark .shadow,
+html.dark .shadow-sm,
+html.dark .shadow-md,
+html.dark .shadow-lg,
+html.dark .shadow-xl {
+  box-shadow: 0 6px 20px rgba(2,6,23,0.6) !important;
+}
+
+/* Card / panel defaults for consistent contrast */
+.card, .panel, .panel-card, .card-contrast {
+  background-color: var(--card) !important;
+  border-radius: 10px;
+  border: 1px solid rgba(255,255,255,0.03) !important;
+  padding: 1rem;
+}
+
+/* Inputs and selects: darker background, clearer focus */
+input, textarea, select {
+  background-color: rgba(255,255,255,0.02) !important;
+  color: var(--text) !important;
+  border: 1px solid rgba(255,255,255,0.06) !important;
+}
+input:focus, textarea:focus, select:focus {
+  box-shadow: 0 6px 18px rgba(2,6,23,0.6), 0 0 0 4px rgba(37,99,235,0.09) !important;
+  outline: none !important;
+  border-color: rgba(37,99,235,0.6) !important;
+}
+
+/* Standardized button appearance */
+.btn-primary, button.btn-primary, .btn-primary[role="button"] {
+  background-color: var(--primary) !important;
+  color: white !important;
+  border-radius: 8px;
+  padding: 0.6rem 1rem;
+  box-shadow: 0 6px 18px rgba(37,99,235,0.14) !important;
+  border: none !important;
+}
+.btn-secondary { background-color: var(--secondary) !important; color: white !important; }
+.btn-success { background-color: var(--success) !important; color: white !important; }
+
+/* Ensure small utility accents are toned down */
+html.dark .text-gray-500, html.dark .text-gray-400, .muted { color: var(--muted-text) !important; }
+
+/* Prevent accidental white backgrounds from third-party components */
+*[class*="bg-white"], *[class*="bg-\#fff"] { background-color: var(--card) !important; }
+
+
+
