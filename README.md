@@ -44,7 +44,8 @@ From **automated monthly billing with PDF receipts** to **real-time visitor trac
 ## 📸 Screenshots
 
 ### 🧭 Professional Dashboard
-<img width="1894" height="888" alt="image" src="https://github.com/user-attachments/assets/7804cbe8-5308-4a47-bfc8-98da756ffd07" />
+<img width="1894" height="888" alt="Screenshot 2026-02-08 225148" src="https://github.com/user-attachments/assets/69a06a72-e32c-4dab-a86d-2010039a8b0a" />
+
 
 ### 💳 Secure Payments
 <img width="1904" height="956" alt="image" src="https://github.com/user-attachments/assets/09e85280-5a6d-4f26-a69e-13baeb15a7e7" />
